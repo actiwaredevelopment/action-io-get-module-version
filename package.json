@@ -8,14 +8,8 @@
     "@actions/github": "^5.0.0",
     "moment": "^2.29.1"
   },
-  "devDependencies": {
-    "@types/jest": "^26.0.9",
-    "@zeit/ncc": "^0.22.3",
-    "jest": "^26.3.0"
-  },
   "scripts": {
     "start": "npm run build",
-    "build": "ncc build index.js -m",
-    "test": "jest --coverage"
+    "build": "ncc build index.js -m"
   }
 }
