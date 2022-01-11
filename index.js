@@ -8,8 +8,8 @@ try {
 
     const now = new Date();
 
-    const day = now.getDay().toString();
-    const month = now.getMonth().toString();
+    let day = now.getDay().toString();
+    let month = now.getMonth().toString();
 
     if (day.length === 1) {
         day = `0${day}`;
