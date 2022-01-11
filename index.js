@@ -1,15 +1,25 @@
 const fs = require("fs");
 const core = require('@actions/core');
 
-var moment = require('moment');
-
 try {
     // `module-definition-file` input defined in action metadata file
     const moduleDefinitionFile = core.getInput('module-definition-file');
     const fallbackVersion = core.getInput('fallback-version') ?? '2.0.0';
 
-    const time = moment().utcOffset();
-    const versionPostFix = time.format('YYMM');
+    const now = new Date();
+
+    const day = now.getDay().toString();
+    const month = now.getMonth().toString();
+
+    if (day.length === 1) {
+        day = `0${day}`;
+    }
+
+    if (month.length === 1) {
+        month = `0${month}`;
+    }
+
+    const versionPostFix = `${month}${day}`;
 
     if (!fs.existsSync(moduleDefinitionFile)) {
         console.log(`  - ${moduleDefinitionFile} (Not Found)`);
