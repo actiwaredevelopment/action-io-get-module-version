@@ -1,7 +1,7 @@
 const fs = require("fs");
 const core = require('@actions/core');
 
-const moment = require('moment');
+var moment = require('moment');
 
 try {
     // `module-definition-file` input defined in action metadata file
