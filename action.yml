@@ -1,17 +1,25 @@
 name: 'Get module info version'
 description: 'Reads the version number from the module definition file (info.json)'
 inputs:
-  module-definition-file:  # id of input
-    description: 'Where is the info.json'
-    required: true
-    default: './module-definition/info.json'
-  fallback-version:  # id of input
-    description: 'Defaul version'
-    required: false
-    default: '2.0.0'
+    module-definition-file: # id of input
+        description: 'Where is the info.json'
+        required: true
+        default: './module-definition/info.json'
+    fallback-version: # id of input
+        description: 'Defaul version'
+        required: false
+        default: '2.0.0'
+    alternative-major-version: # id of input
+        description: 'Alternative major version'
+        required: false
+        default: ''
+    alternative-minor-version: # id of input
+        description: 'Alternative minor version'
+        required: false
+        default: ''
 outputs:
-  version: # id of output
-    description: 'The version number of the module'
+    version: # id of output
+        description: 'The version number of the module'
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+    using: 'node16'
+    main: 'dist/index.js'
