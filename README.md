@@ -12,6 +12,14 @@ This action determines the version number from the module definition file and re
 
 The fallback version. Default `2.0.0`
 
+## `alternative-major-version`
+
+The alternative major version. Default ``
+
+## `alternative-minor-version`
+
+The alternative minor version. Default ``
+
 ## Outputs
 
 ## `version`
