@@ -21,7 +21,7 @@ The version number of the module. If the version number is not recognized, the f
 ## Example usage
 
 ```yml
-uses: actiwaredevelopment/action-io-get-module-version@v0.1
+uses: actiwaredevelopment/action-io-get-module-version@v0.2
 with:
   module-definition-file: './module-definition/info.json'
   fallback-version: '2.0.0'
