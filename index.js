@@ -60,7 +60,7 @@ try {
 		}
 
 		if (alternativeMinorVersion && version.length > 1) {
-			version[1] = alternativeMajorVersion;
+			version[1] = alternativeMinorVersion;
 		}
 
 		if (version && version.length > 0) {
