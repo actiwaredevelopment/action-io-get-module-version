@@ -15,8 +15,6 @@ try {
 		core.getInput('alternative-major-version') ?? '';
 	const alternativeMinorVersion =
 		core.getInput('alternative-minor-version') ?? '';
-	const alternativeBuildVersion =
-		core.getInput('alternative-build-version') ?? '';
 
 	const now = new Date();
 
@@ -34,6 +32,9 @@ try {
 	}
 
 	const versionPostFix = `${month}${day}`;
+
+	const alternativeBuildVersion =
+		core.getInput('alternative-build-version') ?? versionPostFix;
 
 	if (!fs.existsSync(filePath)) {
 		console.log(`  - ${filePath} (Not Found)`);
@@ -65,11 +66,11 @@ try {
 			version[1] = alternativeMinorVersion;
 		}
 
-		if (alternativeBuildVersion === 'true') {
+		if (alternativeBuildVersion !== '') {
 			if (version.length > 3) {
-				version[3] = versionPostFix;
+				version[3] = alternativeBuildVersion;
 			} else {
-				version.push(versionPostFix);
+				version.push(alternativeBuildVersion);
 			}
 		}
 

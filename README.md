@@ -20,6 +20,10 @@ The alternative major version. Default ``
 
 The alternative minor version. Default ``
 
+## `alternative-build-version`
+
+The alternative build version. Default ``
+
 ## Outputs
 
 ## `version`
