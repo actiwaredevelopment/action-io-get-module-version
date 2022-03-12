@@ -17,6 +17,10 @@ inputs:
         description: 'Alternative minor version'
         required: false
         default: ''
+    alternative-build-version: # id of input
+        description: 'Alternative build version'
+        required: false
+        default: ''
 outputs:
     version: # id of output
         description: 'The version number of the module'

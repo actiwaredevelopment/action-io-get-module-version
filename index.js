@@ -15,6 +15,8 @@ try {
 		core.getInput('alternative-major-version') ?? '';
 	const alternativeMinorVersion =
 		core.getInput('alternative-minor-version') ?? '';
+	const alternativeBuildVersion =
+		core.getInput('alternative-build-version') ?? '';
 
 	const now = new Date();
 
@@ -61,6 +63,14 @@ try {
 
 		if (alternativeMinorVersion && version.length > 1) {
 			version[1] = alternativeMinorVersion;
+		}
+
+		if (alternativeBuildVersion === 'true') {
+			if (version.length > 3) {
+				version[3] = versionPostFix;
+			} else {
+				version.push(versionPostFix);
+			}
 		}
 
 		if (version && version.length > 0) {
