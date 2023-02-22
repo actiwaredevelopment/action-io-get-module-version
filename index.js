@@ -19,6 +19,7 @@ try {
 	const now = new Date();
 
 	let moduleVersion = '';
+	let moduleVersionNoBuild = '';
 
 	let day = now.getDay().toString();
 	let month = now.getMonth().toString();
@@ -41,6 +42,7 @@ try {
 		console.log(`  - ${fallbackVersion}.${versionPostFix} (Fallback)`);
 
 		moduleVersion = `${fallbackVersion}.${versionPostFix}`;
+		moduleVersionNoBuild = `${fallbackVersion}`;
 	} else {
 		const moduleDefinition = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
@@ -48,10 +50,12 @@ try {
 			console.log(`  - ${fallbackVersion}.${versionPostFix} (Fallback)`);
 
 			moduleVersion = `${fallbackVersion}.${versionPostFix}`;
+			moduleVersionNoBuild = `${fallbackVersion}`;
 		} else {
 			console.log(`  - ${moduleDefinition.version}`);
 
 			moduleVersion = `${moduleDefinition.version}`;
+			moduleVersionNoBuild = `${moduleVersion}`;
 		}
 	}
 
@@ -66,6 +70,10 @@ try {
 			version[1] = alternativeMinorVersion;
 		}
 
+		if (version && version.length > 0) {
+			moduleVersion = version.join('.');
+		}
+
 		if (alternativeBuildVersion !== '') {
 			if (version.length > 3) {
 				version[3] = alternativeBuildVersion;
@@ -76,12 +84,20 @@ try {
 
 		if (version && version.length > 0) {
 			moduleVersion = version.join('.');
+
+			if (version && version.length > 3) {
+				moduleVersionNoBuild = `${version[0]}.${version[1]}.${version[2]}`;
+			} else {
+				moduleVersionNoBuild = `${moduleVersion}`;
+			}
 		}
 	}
 
 	console.log(`Version: ${moduleVersion}`);
+	console.log(`Version (without build version): ${moduleVersionNoBuild}`);
 
 	core.setOutput('version', `${moduleVersion}`);
+	core.setOutput('versionNoBuild', `${moduleVersionNoBuild}`);
 } catch (error) {
 	core.setFailed(error.message);
 }
