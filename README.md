@@ -10,7 +10,7 @@ This action determines the version number from the module definition file and re
 
 ## `fallback-version`
 
-The fallback version. Default `2.0.0`
+The fallback version without build version. Default `2.0.0`
 
 ## `alternative-major-version`
 
@@ -30,10 +30,14 @@ The alternative build version. Default ``
 
 The version number of the module. If the version number is not recognized, the fallback with the date prefix YYMM is used.
 
+## `versionNoBuild`
+
+The version number of the module without the build version. If the version number is not recognized, the fallback with the date prefix YYMM is used.
+
 ## Example usage
 
 ```yml
-uses: actiwaredevelopment/action-io-get-module-version@v0.2
+uses: actiwaredevelopment/action-io-get-module-version@v0.7
 with:
   module-definition-file: './module-definition/info.json'
   fallback-version: '2.0.0'

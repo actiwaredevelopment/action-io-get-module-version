@@ -1,31 +1,41 @@
-name: "Get module info version"
-description: "Reads the version number from the module definition file (info.json)"
+name: 'Get module info version'
+description: 'Reads the version number from the module definition file (info.json)'
 inputs:
-  module-definition-file: # id of input
-    description: "Where is the info.json"
-    required: true
-    default: "./module-definition/info.json"
-  fallback-version: # id of input
-    description: "Defaul version"
-    required: false
-    default: "2.0.0"
-  alternative-major-version: # id of input
-    description: "Alternative major version"
-    required: false
-    default: ""
-  alternative-minor-version: # id of input
-    description: "Alternative minor version"
-    required: false
-    default: ""
-  alternative-build-version: # id of input
-    description: "Alternative build version"
-    required: false
-    default: ""
+    module-definition-file: # id of input
+        description: 'Where is the info.json'
+        required: true
+        type: string
+        default: './module-definition/info.json'
+    fallback-version: # id of input
+        description: 'Default version without build version'
+        required: false
+        type: string
+        default: '2.0.0'
+    alternative-major-version: # id of input
+        description: 'Alternative major version'
+        required: false
+        type: string
+        default: ''
+    alternative-minor-version: # id of input
+        description: 'Alternative minor version'
+        required: false
+        type: string
+        default: ''
+    alternative-build-version: # id of input
+        description: 'Alternative build version'
+        required: false
+        type: string
+        default: ''
+    ignore-info-json:
+        description: 'Indicates if a info.json file should be used to determine the version'
+        required: false
+        type: boolean
+        default: false
 outputs:
-  version: # id of output
-    description: "The version number of the module"
-  versionNoBuild: # id of output
-    description: "The version number of the module without the build version"
+    version: # id of output
+        description: 'The version number of the module'
+    versionNoBuild: # id of output
+        description: 'The version number of the module without the build version'
 runs:
-  using: "node16"
-  main: "dist/index.js"
+    using: 'node16'
+    main: 'dist/index.js'

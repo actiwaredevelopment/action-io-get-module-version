@@ -4,6 +4,8 @@ const core = require('@actions/core');
 
 try {
 	// `module-definition-file` input defined in action metadata file
+	const ignoreInfoJson = core.getBooleanInput('ignore-info-json') ?? false;
+
 	const moduleDefinitionFile = core.getInput('module-definition-file');
 	const filePath = path.join(
 		process.env.GITHUB_WORKSPACE,
@@ -21,8 +23,8 @@ try {
 	let moduleVersion = '';
 	let moduleVersionNoBuild = '';
 
-	let day = now.getDay().toString();
-	let month = now.getMonth().toString();
+	let day = String(now.getDate()).padStart(2, '0');
+	let month = String(now.getMonth() + 1).padStart(2, '0');
 
 	if (day.length === 1) {
 		day = `0${day}`;
@@ -37,11 +39,13 @@ try {
 	const alternativeBuildVersion =
 		core.getInput('alternative-build-version') ?? versionPostFix;
 
-	if (!fs.existsSync(filePath)) {
+	if (ignoreInfoJson == true || !fs.existsSync(filePath)) {
 		console.log(`  - ${filePath} (Not Found)`);
-		console.log(`  - ${fallbackVersion}.${versionPostFix} (Fallback)`);
+		console.log(
+			`  - ${fallbackVersion}.${alternativeBuildVersion} (Fallback)`
+		);
 
-		moduleVersion = `${fallbackVersion}.${versionPostFix}`;
+		moduleVersion = `${fallbackVersion}.${alternativeBuildVersion}`;
 		moduleVersionNoBuild = `${fallbackVersion}`;
 	} else {
 		const moduleDefinition = JSON.parse(fs.readFileSync(filePath, 'utf8'));
